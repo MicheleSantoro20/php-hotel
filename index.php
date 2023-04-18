@@ -50,15 +50,22 @@
         ],
 
     ];
-
-    foreach($hotels as $hotel) {
-        foreach($hotel as $chiave => $valore) {
-            echo  $chiave. " = " . $valore . "<br/>";
-        }
-    }
 ?>    
 
-<table class="table">
+<?php 
+?>
+<form method="GET" action="index.php">
+    <label for="parking">Parcheggio?</label>
+    <select name="parcheggio" id="parking">
+        <option value="si">Si</option>
+        <option value="no">No</option>
+    </select>
+    <button type="Submit">Avvia ricerca</button>
+    <button type="Reset">Reset</button>
+
+</form>
+
+<table class="table table-hover table-dark">
     <thead>
         <tr>
             <?php
@@ -71,19 +78,19 @@
     <tbody>
         <?php
             foreach($hotels as $hotel) {
-                echo  '<tr>' .
-                    foreach ($hotels as $chiave => $valore) {
-                        echo . '<td>' . $chiave. $valore . '</td>';
-                    }
-                . '</tr>';
-            }
+                echo  '<tr>';
+                if ($hotel['parking'] == true) {
+                    $hotel['parking'] = 'Si';
+                } else {
+                    $hotel['parking'] = 'No';
+                };
+                foreach ($hotel as $chiave => $valore) {
+                    echo  '<td>' . $valore . '</td>';
+                };
+                echo  '</tr>';
+            };
         ?>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
+
     </tbody>
 </table>
 
